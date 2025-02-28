@@ -1,5 +1,6 @@
 package com.boot.main.dto;
 
+// pozůstatek dto pro login v prvnotní verzi authControlleru
 public class LoginRequestDTO {
     private String username;
     private String password;

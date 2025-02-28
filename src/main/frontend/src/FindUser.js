@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import axios from "axios";
 
+// komponenta pro získání jednoho uživatele dle id
 function FindUser() {
     const [userId, setUserId] = useState("");
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const username = localStorage.getItem("username");
 
+    // volání na backend
     const handleFindUser = () => {
         const credential = `Basic ${btoa("reader:test")}`
         if (userId === null || userId === "") {
@@ -54,6 +56,7 @@ function FindUser() {
                     <table border="1" cellPadding="5" cellSpacing="0" style={{margin: "10px auto"}}>
                         <tbody>
                         {Object.entries(user).map(([key, value]) => {
+                            // stejná validace jako u tabulky všech uživatelů, bez admina žádné heslo
                             if (username !== "admin" && key === "password") {
                                 return (
                                     <tr key={key}>

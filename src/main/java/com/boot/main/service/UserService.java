@@ -9,12 +9,16 @@ import com.boot.main.model.User;
 
 import java.util.List;
 
+// service pro uživatele, sjednocuje repo a jeho volání/získání dat databáze
+// a logiku controlleru, zde dochází k ziskavani uprave dat
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
+    // encoder využívám pro encode zadaného hesla na fe a jeho uložení do db v transformovaném stavu
+    // při vytváření uživatele a úpravě uživatele
     @Autowired
     private PasswordEncoder passwordEncoder;
 

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
+// úprava uživatele
 function UpdateUser(props) {
     const [userId, setUserId] = useState(null);
     const [user, setUser] = useState(null);
@@ -10,6 +11,12 @@ function UpdateUser(props) {
     const [password, setPassword] = useState(null);
     const [message, setMessage] = useState("");
 
+    // hádám že by mohl být problém i s úpravou/odstraněním toho daného přihlášeného uživatele
+    // jak by se aplikace chovala ?? TODO
+
+    // volání pro získání id uživatele dle usernamu přihlášeného uživatele
+    // to je potřeba pro automatické vyplnění jeho id do formuláře pro úpravu aby
+    // mu aplikace neumožnila vyplnit jiné id pro úpravu jiného uživatele ale pouze sebe
     useEffect( () => {
         const username = localStorage.getItem("username");
         axios.get(`http://localhost:8080/users/username/${username}`, {
@@ -31,6 +38,7 @@ function UpdateUser(props) {
     }, []);
     console.log(user);
 
+    // volání be
     const handleUpdateUser = () => {
         if (!props.auth || (props.cred.trim() === "")) {
             setMessage("you are not logged in");
@@ -75,6 +83,7 @@ function UpdateUser(props) {
         <div style={{padding: "20px", textAlign: "center", border: "1px solid black"}}>
             <h1>update user:</h1>
             <div>
+                {/*admin má možnost vyplňovat id aby mohl odstranit kohokoliv, přihlášený uživatel pouze sebe*/}
                 {localStorage.getItem("username") === "admin" ?
                     (<input
                         type="number"

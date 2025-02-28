@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+// entity uživatele pro tabulku v postgre, musí být shodná s aktuální tabulkou
 @Entity
 @Table(name = "user", schema = "security")
 public class User {
 
+    // aktuální sloupce a jejich informace
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,6 +32,8 @@ public class User {
     @Size(min = 3, max = 130, message = "password must be between 3 and 130 characters")
     @Column(name = "password", nullable = false)
     private String password;
+
+    // getry setry
 
     public Integer getId() {
         return id;

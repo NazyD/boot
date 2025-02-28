@@ -15,6 +15,7 @@ function App() {
     const [cred, setCred] = useState("");
 
     useEffect(() => {
+        // pro zjištění (lokální) zda je uživatel přihlášen už a nebo ne i po restartu apky
         const storedUsername = localStorage.getItem("username");
         const storedPassword = localStorage.getItem("password");
         const storedCredential = localStorage.getItem("credentials");
@@ -26,6 +27,7 @@ function App() {
         }
     }, []);
 
+    // volání loginu s basic autorizací
     const login = () => {
         const credentials = `Basic ${btoa(username + ":" + password)}`;
 
@@ -35,6 +37,7 @@ function App() {
             }
         })
             .then(response => {
+                // při úspěšném volání nastaví potřebná data
                 setAuthenticated(true);
                 setErrorMessage("");
                 localStorage.setItem("username", username);
@@ -49,6 +52,8 @@ function App() {
     };
 
     const logout = () => {
+        // odebrání a vyčištění od aktuálních dat plus refresh pro zavření otevřených případných komponent
+        // které mají data které se bez přihlášení nemají zobrazovat
         localStorage.removeItem("username");
         localStorage.removeItem("password");
         localStorage.removeItem("credentials");
@@ -94,10 +99,12 @@ function App() {
                         path="/"
                         element={
                             <div>
+                                {/*komponenty pro všechny i nepřihlášeného uživatele*/}
                                 <AllUsers/>
                                 <FindUser/>
                                 {authenticated &&
                                     <>
+                                        {/*komponenty pro admina plus přihlášeného uživatele*/}
                                         {localStorage.getItem("username") === "admin" ?
                                             (
                                                 <>

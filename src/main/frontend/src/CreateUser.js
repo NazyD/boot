@@ -1,6 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
 
+// komponenta ve formě formuláře pro vytvoření uživatele
 function CreateUser(props) {
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
@@ -9,7 +10,9 @@ function CreateUser(props) {
     const [showForm, setShowForm] = useState(false);
     const [message, setMessage] = useState("");
 
+    // volání be
     const handleCreateUser = () => {
+        // validace aktivního přihlášení a potřebných dat
         if(!props.auth || (props.cred.trim() === "")){
             setMessage("you are not logged in");
             return;
@@ -74,6 +77,7 @@ function CreateUser(props) {
                         onChange={(e) => setLastName(e.target.value)}
                         placeholder="last name"
                         style={{padding: "5px 8px", margin: "10px"}}
+                        required={true}
                     />
                     <input
                         type="text"
@@ -81,6 +85,7 @@ function CreateUser(props) {
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="username"
                         style={{padding: "5px 8px", margin: "10px"}}
+                        required={true}
                     />
                     <input
                         type="text"
@@ -88,7 +93,11 @@ function CreateUser(props) {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="password"
                         style={{padding: "5px 8px", margin: "10px"}}
+                        required={true}
                     />
+
+                    {/*textace které zobrazují informace uživateli o uspechu neuspechu co je potřeba a co ne, do budoucna */}
+                    {/*sjednotit do jedné komponenty, odlišit chyby varování oznámení a další*/}
                     {message && <p style={{color: "red"}}>{message}</p>}
                     <button onClick={handleCreateUser} style={{padding: "5px 8px"}}>
                         create

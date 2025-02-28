@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    // pouze jedna custom metoda využivající se v security i get metodě, ostatní využívané jsou výchozí z jperepa
     Optional<User> findByUsername(String username);
 
 }

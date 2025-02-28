@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// controller uživatele
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -37,6 +38,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    // rizikové, změnit na jiny ziskání dat uživatele mimo id, a nebo dořešit validaci duplicitní username při zakládání a úpravě uživatele
     @GetMapping("/username/{username}")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 
+// komponenta získání všech uživatelů v tabulce
 function AllUsers() {
     const [users, setUsers] = useState([]);
     const [columns, setColumns] = useState([]);
@@ -8,6 +9,7 @@ function AllUsers() {
     const [message, setMessage] = useState("")
     const username = localStorage.getItem("username");
 
+    // volání pro získání dat všech uživatelů z db
     const fetchUsers = () => {
         const credentials = `Basic ${btoa("reader:test")}`
         axios.get("http://localhost:8080/users/", {
@@ -42,6 +44,7 @@ function AllUsers() {
                 <p>no users found</p>
             ) : (
                 <>
+                    {/*zobrazení tabulky pouze v případě kdy máme data*/}
                     <table border="1" cellPadding="5" cellSpacing="0" style={{margin: "10px auto"}}>
                         <thead>
                         <tr>
@@ -54,6 +57,7 @@ function AllUsers() {
                         {users.map((user) => (
                             <tr key={user.id}>
                                 {columns.map((column) => {
+                                    // v případě kdy přihlášený uživatel není admin data o heslu se nezobrazí
                                     if(username !== "admin" && column === "password"){
                                         return(<td style={{color: "red"}}>no access</td>);
                                     } else {

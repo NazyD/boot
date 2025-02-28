@@ -2,6 +2,7 @@ package com.boot.main.dto;
 
 import jakarta.validation.constraints.Size;
 
+// dto pro transformaci vstupních hodnot v metodách controlleru
 public class UserUpdateDTO {
 
     @Size(min = 2, max = 50, message = "first name must be between 2 and 50 characters")

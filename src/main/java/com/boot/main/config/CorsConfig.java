@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+// cors konfigurace pro povolení volánní metod get, post, put, ... z frontend portu 3000
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 

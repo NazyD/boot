@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+// volání loginu z app komponenty pro přihlášení uživatele
 @RestController
 public class AuthController {
     @PostMapping("/login")

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+// custom servica pro využití v spring securite, ziskání uživatele a jeho dle username
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

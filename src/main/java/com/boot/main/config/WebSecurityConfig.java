@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+// konfigurace spring seccurity, úprava nalezení uživatele dle daného usename, encode daného hesla a kontrola s heslem nalezeného uživatele
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {

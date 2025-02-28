@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+// odstranění uživatele
 function DeleteUser(props) {
     const [userId, setUserId] = useState("");
     const [message, setMessage] = useState(null);
 
+    // lze udělat stejný volání jako u úpravy pro získání id přihlášeného uživatele
+    // aby nemohl odstranit jiného uživatele kromě sebe v případě kdy není admin
+
+    // volání be
     const handleDeleteUser = () => {
         if(!props.auth || (props.cred.trim() === "")){
             setMessage("you are not logged in");
@@ -41,6 +46,7 @@ function DeleteUser(props) {
                     placeholder="enter id"
                     style={{ padding: "5px 8px", margin: "10px" }}
                 />
+                {/*vytvoření potvrzohacího okna */}
                 <button
                     onClick={handleDeleteUser}
                     style={{ padding: "5px 8px" }}
